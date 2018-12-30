@@ -14,12 +14,24 @@ class DayZSurvival : MissionServer
 	ref InfectedHordes m_ZombieEvents;
 	protected float m_LogInTimerLength = 1;     //in seconds the spawn timer when players login!
 	bool m_StaminaStatus = false;
+	//sheep
+	bool m_HungerStatus = false;
+	bool m_ThirstStatus = false;
+	bool EnableAirdrops = false;
+	bool SpawnZombie = false;
+	bool ShowSignal = false;
+	bool m_Debugmonitor = false;
+	
+	ref AirDrop AirDropClass;
+
 
 	void DayZSurvival()
 	{
-		Print("VANILLA PLUS PLUS IS ALIVE!!");
+		Print("VANILLA++ IS ALIVE!!");
 		m_Modules = new set<ref ModuleManager>;
 		RegisterModules();
+		//Airdrop
+		AirDropClass = new AirDrop;
 	}
 	
 	void ~DayZSurvival()
@@ -107,16 +119,50 @@ class DayZSurvival : MissionServer
 		{
 			m_StaminaStatus = true; //Disable Stamina
 		}
-		
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("HungerStatus"))
+		{
+			m_HungerStatus = true; //Disable Hunger
+		}
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("ThirstStatus"))
+		{
+			m_ThirstStatus = true; //Disable Thirst
+		}
 		if (ModTunables.Cast(GetModule(ModTunables)).IsActive("InfectedHordes"))
 		{
 			m_ZombieEvents = new InfectedHordes;
 		}
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("Airdrops"))
+		{
+			EnableAirdrops = true; //Airdrops
+		}
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("AirdropZombies"))
+		{
+			SpawnZombie = true; //AirdropZombies
+		}
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("AirdropFlare"))
+		{
+			ShowSignal = true; //AirdropFlares
+		}
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActiveMisc("AirdropFlare"))
+		{
+			m_Debugmonitor = true; //Debug monitor
+			GetGame().SetDebugMonitorEnabled(1);
+		}
 		
 		//-----------
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.PlayerCounter, 110000, true);  //Default 120000 2 mins Looped
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.ReRegisterAdminTool, 115000, true);  //Default 120000 2 mins Looped
 		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.CustomMOTD, TIME_INTERVAL, true);  //Default 120000 2 mins Looped
 		//-----------
+	}
+	
+	void ReRegisterAdminTool()
+	{
+		if (ModTunables.Cast(GetModule(ModTunables)).IsActive("AdminTools"))
+		{
+			Print("Re-Registering Admin tool!!");
+			GetModule(AdminTool).Init();
+		}
 	}
 
 	override void OnPreloadEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int queueTime)
@@ -146,15 +192,26 @@ class DayZSurvival : MissionServer
 				m_currentPlayer = 0;
 			}
 
-			PlayerBase currentPlayer = PlayerBase.Cast(m_Players.Get(m_currentPlayer));
-			currentPlayer.OnTick();
+			if(m_Players.Get(m_currentPlayer) != NULL)
+			{
+				PlayerBase currentPlayer = PlayerBase.Cast(m_Players.Get(m_currentPlayer));
+				
+				currentPlayer.OnTick();
 
-			if (m_StaminaStatus) {
-			currentPlayer.GetStaminaHandler().SyncStamina(1000,1000);
-            currentPlayer.GetStatStamina().Set(currentPlayer.GetStaminaHandler().GetStaminaCap());
+				if (m_StaminaStatus) {
+					currentPlayer.GetStaminaHandler().SyncStamina(1000,1000);
+					currentPlayer.GetStatStamina().Set(currentPlayer.GetStaminaHandler().GetStaminaCap());
+				}
+				if (m_HungerStatus) {
+					currentPlayer.GetStatEnergy().Set(20000);
+				}
+				if (m_ThirstStatus) {
+					currentPlayer.GetStatWater().Set(5000);
+				}
+				
+				if (GetModule(SafeZone)) { SafeZone.Cast(GetModule(SafeZone)).SafeZoneHandle(currentPlayer); }
+				m_currentPlayer++;
 			}
-			if (GetModule(SafeZone)) { SafeZone.Cast(GetModule(SafeZone)).SafeZoneHandle(currentPlayer); }
-			m_currentPlayer++;
 		}
 	}
 
@@ -172,16 +229,17 @@ class DayZSurvival : MissionServer
 	override void OnEvent(EventType eventTypeId, Param params) 
 	{
 		super.OnEvent(eventTypeId,params);
-		
+
+		PlayerIdentity identity;
 		switch(eventTypeId)
 		{
 			case ChatMessageEventTypeID:
-				 ChatMessageEventParams chat_params = ChatMessageEventParams.Cast(params);
-				 if (chat_params.param1 == 0 && chat_params.param2 != "") //trigger only when channel is Global == 0 and Player Name does not equal to null
-					{
-						Param4<int,string,string,string> request_info = new Param4<int,string,string,string>(chat_params.param1, chat_params.param2, chat_params.param3, chat_params.param4);
-						AdminTool.Cast(GetModule(AdminTool)).RequestHandler(request_info); //Send the param to Admintools
-					}
+			 ChatMessageEventParams chat_params = ChatMessageEventParams.Cast(params);
+			 if (chat_params.param1 == 0 && chat_params.param2 != "") //trigger only when channel is Global == 0 and Player Name does not equal to null
+				{
+					Param4<int,string,string,string> request_info = new Param4<int,string,string,string>(chat_params.param1, chat_params.param2, chat_params.param3, chat_params.param4);
+					AdminTool.Cast(GetModule(AdminTool)).RequestHandler(request_info); //Send the param to Admintools
+				}
 			break;
 		}
 	}
@@ -202,7 +260,9 @@ class DayZSurvival : MissionServer
 	    GlobalMessage(1,"Online Players: "+ numbOfplayers.ToString());
 	}
 	
-	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
+	// This overrides '5_Mission\mission\missionServer.c', but because we changed the 
+	// type from PlayerBase to PlayerBase, there is NO NEED for 'overrride keyword'
+	void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		ItemBase itemBs;
 		EntityAI itemEnt;
@@ -211,11 +271,11 @@ class DayZSurvival : MissionServer
 		{
 			if (AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).CheckTunables("StaticLoadouts"))
 			{
-				bool reqld = AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).LoadRandomStaticLD(player);
+				bool reqld = AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).LoadRandomStaticLD(PlayerBase.Cast(player));
 			}
 			else if (AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).CheckTunables("RandomizedLoadouts"))
 			{
-				AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).LoadRndGenLoadout(player);
+				AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).LoadRndGenLoadout(PlayerBase.Cast(player));
 			}
 			else
 			{
@@ -223,6 +283,11 @@ class DayZSurvival : MissionServer
 				itemEnt = player.GetInventory().CreateInInventory( "Rag" );
 				itemBs = ItemBase.Cast(itemEnt);							
 				itemBs.SetQuantity(6);
+			
+				itemEnt = player.GetInventory().CreateInInventory("Flashlight");
+				itemBs = ItemBase.Cast(itemEnt);
+				itemEnt = player.GetInventory().CreateInInventory("Battery9V");
+				itemBs = ItemBase.Cast(itemEnt);
 			}
 
 			if (AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).CheckTunables("SpawnArmed"))
@@ -233,15 +298,15 @@ class DayZSurvival : MissionServer
 				switch(oRandValue.ToString())
 				{
 					case "0":
-					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( player , "fnx45", true, {"fnp45_mrdsoptic","PistolSuppressor"},{"mag_fnx45_15rnd","mag_fnx45_15rnd"} );
+					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( PlayerBase.Cast(player) , "fnx45", true, {"fnp45_mrdsoptic","PistolSuppressor"},{"mag_fnx45_15rnd","mag_fnx45_15rnd"} );
 					break;
 
 					case "1":
-					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( player , "CZ75", true, {"PistolSuppressor"} , {"Mag_CZ75_15Rnd","Mag_CZ75_15Rnd"} );
+					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( PlayerBase.Cast(player) , "CZ75", true, {"PistolSuppressor"} , {"Mag_CZ75_15Rnd","Mag_CZ75_15Rnd"} );
 					break;
 
 					case "2":
-					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( player , "makarovij70", true, {"PistolSuppressor"} , {"mag_ij70_8rnd","mag_ij70_8rnd"} );
+					AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).SpawnGunIn( PlayerBase.Cast(player) , "makarovij70", true, {"PistolSuppressor"} , {"mag_ij70_8rnd","mag_ij70_8rnd"} );
 					break;
 				}
 			}
@@ -252,6 +317,25 @@ class DayZSurvival : MissionServer
 			itemEnt = player.GetInventory().CreateInInventory( "Rag" );
 			itemBs = ItemBase.Cast(itemEnt);							
 			itemBs.SetQuantity(6);
+			
+			itemEnt = player.GetInventory().CreateInInventory("Flashlight");
+			itemBs = ItemBase.Cast(itemEnt);
+			itemEnt = player.GetInventory().CreateInInventory("Battery9V");
+			itemBs = ItemBase.Cast(itemEnt);
+		}
+	}
+	//airdrop
+	float TimerSlice; // Timeslice
+	override void OnUpdate( float timeslice )
+	{
+		super.OnUpdate( timeslice );
+
+		// FPS Fix
+		TimerSlice += timeslice;
+		if (TimerSlice >= AirDropClass.TimesliceMultiplyier)
+		{
+			AirDropClass.CreateAirDrop();
+			TimerSlice = 0;	
 		}
 	}
 }

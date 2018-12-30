@@ -131,19 +131,19 @@ class AdvancedLoadouts extends ModuleManager
 	{
 		ItemBase Hands,Shoulder,Melee,HeadGear,Mask,EyeWear,Gloves,Armband,Body,Vest,Back,Legs,Feet;
 
-		Hands    = player.GetHumanInventory().GetEntityInHands();
-		Shoulder = player.GetHumanInventory().FindAttachment(InventorySlots.SHOULDER);
-		Melee    = player.GetHumanInventory().FindAttachment(InventorySlots.MELEE);
-		HeadGear = player.GetHumanInventory().FindAttachment(InventorySlots.HEADGEAR);
-		Mask     = player.GetHumanInventory().FindAttachment(InventorySlots.MASK);
-		EyeWear  = player.GetHumanInventory().FindAttachment(InventorySlots.EYEWEAR);
-		Gloves   = player.GetHumanInventory().FindAttachment(InventorySlots.GLOVES);
-		Armband  = player.GetHumanInventory().FindAttachment(InventorySlots.ARMBAND);
-		Body     = player.GetHumanInventory().FindAttachment(InventorySlots.BODY);
-		Vest     = player.GetHumanInventory().FindAttachment(InventorySlots.VEST);
-		Back     = player.GetHumanInventory().FindAttachment(InventorySlots.BACK);
-		Legs     = player.GetHumanInventory().FindAttachment(InventorySlots.LEGS);
-		Feet     = player.GetHumanInventory().FindAttachment(InventorySlots.FEET);
+		Class.CastTo(Hands,player.GetHumanInventory().GetEntityInHands());
+		Class.CastTo(Shoulder,player.GetHumanInventory().FindAttachment(InventorySlots.SHOULDER));
+		Class.CastTo(Melee,player.GetHumanInventory().FindAttachment(InventorySlots.MELEE));
+		Class.CastTo(HeadGear,player.GetHumanInventory().FindAttachment(InventorySlots.HEADGEAR));
+		Class.CastTo(Mask,player.GetHumanInventory().FindAttachment(InventorySlots.MASK));
+		Class.CastTo(EyeWear,player.GetHumanInventory().FindAttachment(InventorySlots.EYEWEAR));
+		Class.CastTo(Gloves,player.GetHumanInventory().FindAttachment(InventorySlots.GLOVES));
+		Class.CastTo(Armband,player.GetHumanInventory().FindAttachment(InventorySlots.ARMBAND));
+		Class.CastTo(Body,player.GetHumanInventory().FindAttachment(InventorySlots.BODY));
+		Class.CastTo(Vest,player.GetHumanInventory().FindAttachment(InventorySlots.VEST));
+		Class.CastTo(Back,player.GetHumanInventory().FindAttachment(InventorySlots.BACK));
+		Class.CastTo(Legs,player.GetHumanInventory().FindAttachment(InventorySlots.LEGS));
+		Class.CastTo(Feet,player.GetHumanInventory().FindAttachment(InventorySlots.FEET));
 
 		ExportToJSON(Hands,Shoulder,Melee,HeadGear,Mask,EyeWear,Gloves,Armband,Body,Vest,Back,Legs,Feet);
 	}
@@ -446,8 +446,8 @@ class AdvancedLoadouts extends ModuleManager
 
 		if (FileExist(MainDirectoy))
 		{
-			string m_Path = "$profile:\\Static_Loadouts";
-			string path_find_pattern = m_Path + "\\*";
+			string m_Path = "$profile:/Static_Loadouts";
+			string path_find_pattern = m_Path + "/*";
 
 			FileSearch = FindFile(path_find_pattern, FolderName, file_attr, flags);
 
@@ -574,7 +574,7 @@ class AdvancedLoadouts extends ModuleManager
 	{
 		EntityAI itemAI;
 
-		EntityAI myAttachmentAI;
+		ItemBase myAttachmentAI;
 		EntityAI myAttachmentIB;
 
 		EntityAI ExtraEntity;
@@ -584,7 +584,7 @@ class AdvancedLoadouts extends ModuleManager
 
 		if (isMainGun)
 		{
-			itemAI = player.GetHumanInventory().CreateInHands( item );
+			itemAI = EntityAI.Cast(player.GetHumanInventory().CreateInHands( item ));
 
 			player.SetQuickBarEntityShortcut(itemAI, 2, true); //Puts gun on hotkey 3
 
@@ -593,7 +593,7 @@ class AdvancedLoadouts extends ModuleManager
 					
 				for (int i = 0; i < attachments.Count(); ++i)
 				{
-					myAttachmentAI = itemAI.GetInventory().CreateInInventory( attachments.Get(i) );
+					myAttachmentAI = ItemBase.Cast( itemAI.GetInventory().CreateInInventory( attachments.Get(i)) );
 					if (PoweredOptics.Contains(attachments.Get(i)))
 					{
 						myAttachmentAI.GetInventory().CreateInInventory( "Battery9V" );
@@ -607,7 +607,7 @@ class AdvancedLoadouts extends ModuleManager
 				{
 					if (GetGame().IsKindOf( Extras.Get(ii), "Magazine_Base") && ! (GetGame().IsKindOf( Extras.Get(ii), "Ammunition_Base")) )
 					{
-						mag = player.GetHumanInventory().CreateInInventory(Extras.Get(ii));
+						Class.CastTo(mag,player.GetHumanInventory().CreateInInventory(Extras.Get(ii)));
 						MinQuantity = 2;
 						if (mag)
 						{
@@ -617,7 +617,7 @@ class AdvancedLoadouts extends ModuleManager
 					}
 					else
 					{
-						ExtraEntity = player.GetInventory().CreateInInventory( Extras.Get(ii) );
+						ExtraEntity = EntityAI.Cast(player.GetInventory().CreateInInventory( Extras.Get(ii) ));
 					}
 				}
 			}
@@ -627,15 +627,14 @@ class AdvancedLoadouts extends ModuleManager
 			//For Pistols/Secondary that spawn in inevntory
 			if ( item != "" ) 
 			{
-				itemAI = player.GetHumanInventory().CreateInInventory( item );
-
+				itemAI = EntityAI.Cast( player.GetHumanInventory().CreateInInventory( item ) );
 				player.SetQuickBarEntityShortcut(itemAI, 3, true);  //Puts the Secondary weapon on hotkey 4
 			
 				if ( attachments != NULL && attachments.Count() > 0 )
 				{
 					for (int iz = 0; iz < attachments.Count(); ++iz)
 					{
-						myAttachmentIB = itemAI.GetInventory().CreateAttachment( attachments.Get(iz) );
+						myAttachmentIB = EntityAI.Cast(itemAI.GetInventory().CreateAttachment( attachments.Get(iz) ));
 						if (PoweredOptics.Contains(attachments.Get(iz)))
 						{
 							myAttachmentIB.GetInventory().CreateInInventory( "Battery9V" );
@@ -649,7 +648,7 @@ class AdvancedLoadouts extends ModuleManager
 					{
 						if (GetGame().IsKindOf( Extras.Get(ip), "Magazine_Base") && ! (GetGame().IsKindOf( Extras.Get(ip), "Ammunition_Base")) )
 						{
-							mag = player.GetInventory().CreateInInventory( Extras.Get(ip) );
+							Class.CastTo(mag,player.GetInventory().CreateInInventory( Extras.Get(ip) ));
 							player.SetQuickBarEntityShortcut(mag, 1, true);   //Puts the mag for the secondary on hotkey 2
 
 							MinQuantity = 2;
@@ -657,7 +656,7 @@ class AdvancedLoadouts extends ModuleManager
 						}
 						else
 						{
-							ExtraEntity = player.GetInventory().CreateInInventory( Extras.Get(ip) );
+							ExtraEntity = EntityAI.Cast(player.GetInventory().CreateInInventory( Extras.Get(ip) ));
 						}
 					}
 				}

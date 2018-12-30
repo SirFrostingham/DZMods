@@ -1,4 +1,11 @@
+// #include "$CurrentDir:\\ModdedScripts\\addons\\ModdedScripts\\4_World\\KillLoggerHandle.c"
+// #include "$CurrentDir:\\ModdedScripts\\addons\\ModdedScripts\\4_World\\Classes\\UserActionsComponent\\ActionManagerBase.c"
+// #include "$CurrentDir:\\ModdedScripts\\addons\\ModdedScripts\\4_World\\Entities\\Creatures\\Infected\\ZombieBase.c"
+// #include "$CurrentDir:\\ModdedScripts\\addons\\ModdedScripts\\4_World\\Entities\\ManBase\\PlayerBase\\SurvivorBase.c"
+// #include "$CurrentDir:\\ModdedScripts\\addons\\ModdedScripts\\4_World\\Entities\\ManBase\\PlayerBase.c"
+
 #include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\ServerMission\\DayZSurvival.c"
+#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\Airdrop\\AirDrop.c"
 
 Mission CreateCustomMission(string path)
 {
