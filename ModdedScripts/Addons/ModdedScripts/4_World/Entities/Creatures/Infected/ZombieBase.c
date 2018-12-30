@@ -85,7 +85,11 @@ modded class ZombieBase
 			}
 			Param1<string> Msgparam;
 			Msgparam = new Param1<string>( "The Zombie Has Dropped Some loot!" );
-			GetGame().RPCSingleParam(lastHitSource, ERPCs.RPC_USER_ACTION_MESSAGE, Msgparam, true, lastHitSource.GetIdentity());
+			
+			if (lastHitSource != NULL)
+			{
+				GetGame().RPCSingleParam(lastHitSource, ERPCs.RPC_USER_ACTION_MESSAGE, Msgparam, true, lastHitSource.GetIdentity());
+			}	
 		}
 	}
 
