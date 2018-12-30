@@ -1,3 +1,15 @@
+# Simple instructions:
+1. Establish an instance directory under DayZ server directory, such as: instance
+2. Copy ModdedScripts to DayZ server directory (now referred to as: DayZServerDir from here on out)
+3. Copy mission to mpmissions: DayZServerDir\mpmissions
+4. Start your server: Use some sort of batch file to start/restart server with this in it...
+ - .\DayZServerDir\DayZServer_x64.exe -server -mod=ModdedScripts -scrAllowFileWrite -filePatching -port=2302 -config=instance\serverdz.cfg -profiles=instance -name=instance -BEpath=BattlEye -cpuCount=8 -exThreads=7 -maxMem=20000 -noPause -noSound -noLogs -adminlog -freezecheck
+
+I chose this version of DaOne's Vanilla++ to branch off and go a NO CLIENT MODS route. The latest verions of Vanilla++ incorporates required client-side mods. This implementation keeps all mods server-side only.
+
+All credit goes to DaOne and his dev/qa team. Their instructions listed below... or search GitHub for https://github.com/Da0ne/DZMods
+
+——
 
 # DayZ Vanilla++ Mission by DaOne v0.2
 #### CREDITS: @Sen (@zalexki zalexki ) from DayZModders Discord Server for the KillScore system https://github.com/zalexki
