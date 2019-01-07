@@ -10,7 +10,7 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
 		<rootclass name="DefaultMagazine" /> <!-- magazines -->
 		<rootclass name="Inventory_Base" /> <!-- inventory items -->
 		<rootclass name="HouseNoDestruct" reportMemoryLOD="no" /> <!-- houses, wrecks -->
-		<rootclass name="SurvivorBaseModded" act="character" reportMemoryLOD="no" /> <!-- player characters -->
+		<rootclass name="SurvivorBase" act="character" reportMemoryLOD="no" /> <!-- player characters -->
 		<rootclass name="DZ_LightAI" act="character" reportMemoryLOD="no" /> <!-- infected, animals -->
 		<rootclass name="CarScript" act="car" reportMemoryLOD="no" /> <!-- cars (sedan, hatchback, transitBus, V3S, ...) -->
 	</classes>

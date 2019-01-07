@@ -251,7 +251,7 @@
         <nominal>120</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>80</min>
+        <min>40</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -374,9 +374,9 @@
         <nominal>60</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>50</min>
+        <min>30</min>
         <quantmin>20</quantmin>
-        <quantmax>100</quantmax>
+        <quantmax>70</quantmax>
         <cost>100</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="weapons"/>
@@ -4293,7 +4293,7 @@
         <nominal>60</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>40</min>
+        <min>50</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -5666,12 +5666,32 @@
         <value name="Tier4"/>
     </type>
     <type name="M4A1_Black">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <nominal>40</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>30</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="1" count_in_hoarder="1" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="weapons"/>
+        <usage name="Military"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
     </type>
     <type name="M4A1_Green">
-        <lifetime>7200</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
+        <nominal>40</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>30</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="1" count_in_hoarder="1" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="weapons"/>
+        <usage name="Military"/>
+        <value name="Tier3"/>
+        <value name="Tier4"/>
     </type>
     <type name="M4_CarryHandleOptic">
         <nominal>5</nominal>
@@ -5883,9 +5903,9 @@
         <nominal>80</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>30</min>
-        <quantmin>40</quantmin>
-        <quantmax>80</quantmax>
+        <min>15</min>
+        <quantmin>20</quantmin>
+        <quantmax>40</quantmax>
         <cost>0</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="weapons"/>
@@ -5898,9 +5918,9 @@
         <nominal>80</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>30</min>
-        <quantmin>40</quantmin>
-        <quantmax>80</quantmax>
+        <min>15</min>
+        <quantmin>20</quantmin>
+        <quantmax>40</quantmax>
         <cost>0</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="weapons"/>
@@ -5913,9 +5933,9 @@
         <nominal>80</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>30</min>
-        <quantmin>40</quantmin>
-        <quantmax>80</quantmax>
+        <min>15</min>
+        <quantmin>20</quantmin>
+        <quantmax>40</quantmax>
         <cost>0</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="weapons"/>
@@ -7371,7 +7391,7 @@
         <nominal>40</nominal>
         <lifetime>7200</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>40</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -7379,6 +7399,7 @@
         <category name="tools"/>
         <tag name="floor"/>
         <usage name="Industrial"/>
+        <usage name="Farm"/>
     </type>
     <type name="PilotkaCap">
         <nominal>10</nominal>
@@ -10128,159 +10149,159 @@
         <category name="clothes"/>
         <usage name="Military"/>
     </type>
-    <type name="V3SDoors_CoDriver">
-        <nominal>40</nominal>
-        <lifetime>2700</lifetime>
-        <restock>0</restock>
-        <min>20</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="tools"/>
-        <tag name="floor"/>
-        <usage name="Industrial"/>
-    </type>
-    <type name="V3SDoors_Driver">
-        <nominal>40</nominal>
-        <lifetime>2700</lifetime>
-        <restock>0</restock>
-        <min>20</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="tools"/>
-        <tag name="floor"/>
-        <usage name="Industrial"/>
-    </type>
-    <type name="V3SHood">
-        <nominal>40</nominal>
-        <lifetime>2700</lifetime>
-        <restock>0</restock>
-        <min>20</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="tools"/>
-        <tag name="floor"/>
-        <usage name="Industrial"/>
-    </type>
-    <type name="V3SWheel">
-        <nominal>40</nominal>
-        <lifetime>2700</lifetime>
-        <restock>0</restock>
-        <min>20</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="tools"/>
-        <tag name="floor"/>
-        <usage name="Industrial"/>
-    </type>
-    <type name="V3SWheelDouble">
-        <nominal>40</nominal>
-        <lifetime>2700</lifetime>
-        <restock>0</restock>
-        <min>20</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-        <category name="tools"/>
-        <tag name="floor"/>
-        <usage name="Industrial"/>
-    </type>
-    <type name="V3SWheelDouble_Ruined">
-        <lifetime>1800</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>
-    <type name="V3SWheel_Ruined">
-        <lifetime>1800</lifetime>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-    </type>
-    <type name="V3S_Cargo">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Cargo_Blue">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Cargo_Grey">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Cargo_Orange">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Chassis">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Chassis_Blue">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Chassis_Grey">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
-    <type name="V3S_Chassis_Orange">
-        <nominal>0</nominal>
-        <lifetime>3</lifetime>
-        <restock>1800</restock>
-        <min>0</min>
-        <quantmin>-1</quantmin>
-        <quantmax>-1</quantmax>
-        <cost>100</cost>
-        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    </type>
+    <!-- <type name="V3SDoors_CoDriver"> -->
+        <!-- <nominal>40</nominal> -->
+        <!-- <lifetime>2700</lifetime> -->
+        <!-- <restock>0</restock> -->
+        <!-- <min>20</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+        <!-- <category name="tools"/> -->
+        <!-- <tag name="floor"/> -->
+        <!-- <usage name="Industrial"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SDoors_Driver"> -->
+        <!-- <nominal>40</nominal> -->
+        <!-- <lifetime>2700</lifetime> -->
+        <!-- <restock>0</restock> -->
+        <!-- <min>20</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+        <!-- <category name="tools"/> -->
+        <!-- <tag name="floor"/> -->
+        <!-- <usage name="Industrial"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SHood"> -->
+        <!-- <nominal>40</nominal> -->
+        <!-- <lifetime>2700</lifetime> -->
+        <!-- <restock>0</restock> -->
+        <!-- <min>20</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+        <!-- <category name="tools"/> -->
+        <!-- <tag name="floor"/> -->
+        <!-- <usage name="Industrial"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SWheel"> -->
+        <!-- <nominal>40</nominal> -->
+        <!-- <lifetime>2700</lifetime> -->
+        <!-- <restock>0</restock> -->
+        <!-- <min>20</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+        <!-- <category name="tools"/> -->
+        <!-- <tag name="floor"/> -->
+        <!-- <usage name="Industrial"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SWheelDouble"> -->
+        <!-- <nominal>40</nominal> -->
+        <!-- <lifetime>2700</lifetime> -->
+        <!-- <restock>0</restock> -->
+        <!-- <min>20</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+        <!-- <category name="tools"/> -->
+        <!-- <tag name="floor"/> -->
+        <!-- <usage name="Industrial"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SWheelDouble_Ruined"> -->
+        <!-- <lifetime>1800</lifetime> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3SWheel_Ruined"> -->
+        <!-- <lifetime>1800</lifetime> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Cargo"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Cargo_Blue"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Cargo_Grey"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Cargo_Orange"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Chassis"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Chassis_Blue"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Chassis_Grey"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
+    <!-- <type name="V3S_Chassis_Orange"> -->
+        <!-- <nominal>0</nominal> -->
+        <!-- <lifetime>3</lifetime> -->
+        <!-- <restock>1800</restock> -->
+        <!-- <min>0</min> -->
+        <!-- <quantmin>-1</quantmin> -->
+        <!-- <quantmax>-1</quantmax> -->
+        <!-- <cost>100</cost> -->
+        <!-- <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/> -->
+    <!-- </type> -->
     <type name="VitaminBottle">
         <nominal>40</nominal>
         <lifetime>2700</lifetime>
@@ -10312,6 +10333,11 @@
         <quantmax>70</quantmax>
         <cost>100</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
+        <category name="tools"/>
+        <tag name="shelves"/>
+        <usage name="Coast"/>
+        <usage name="Town"/>
+        <usage name="Village"/>
     </type>
     <type name="WaterproofBag_Green">
         <nominal>20</nominal>

@@ -288,6 +288,8 @@ class DayZSurvival : MissionServer
 				itemBs = ItemBase.Cast(itemEnt);
 				itemEnt = player.GetInventory().CreateInInventory("Battery9V");
 				itemBs = ItemBase.Cast(itemEnt);
+				itemEnt = player.GetInventory().CreateInInventory("PersonalRadio");
+				itemBs = ItemBase.Cast(itemEnt);
 			}
 
 			if (AdvancedLoadouts.Cast(GetModule(AdvancedLoadouts)).CheckTunables("SpawnArmed"))
@@ -321,6 +323,8 @@ class DayZSurvival : MissionServer
 			itemEnt = player.GetInventory().CreateInInventory("Flashlight");
 			itemBs = ItemBase.Cast(itemEnt);
 			itemEnt = player.GetInventory().CreateInInventory("Battery9V");
+			itemBs = ItemBase.Cast(itemEnt);
+			itemEnt = player.GetInventory().CreateInInventory("PersonalRadio");
 			itemBs = ItemBase.Cast(itemEnt);
 		}
 	}
