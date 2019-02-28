@@ -119,7 +119,8 @@ class InfectedHordes
 		switch(task)
 		{
 			case "inform":
-			GetGame().ChatPlayer(5,message);
+			//GetGame().ChatPlayer(5,message);
+			GetGame().ChatPlayer(message);
 			break;
 		}
 	}

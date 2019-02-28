@@ -6,5 +6,6 @@ void CustomMOTD()
 {
    // TStringArray Messages = {"Welcome to My Server!","DayZ Modded Survival By DaOne"};
    TStringArray Messages = {"http://moosemilker.com"};
-   GetGame().ChatPlayer(5,Messages.GetRandomElement());
+   //GetGame().ChatPlayer(5,Messages.GetRandomElement());
+   GetGame().ChatPlayer(Messages.GetRandomElement());
 }

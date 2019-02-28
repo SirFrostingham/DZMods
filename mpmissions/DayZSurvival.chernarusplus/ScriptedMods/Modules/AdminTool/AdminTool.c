@@ -102,6 +102,7 @@ class AdminTool extends ModuleManager
 		m_ExtendedCommands.Insert("/spawncar",1);
 		m_ExtendedCommands.Insert("/savePoint",10);
 		m_ExtendedCommands.Insert("/refuel",1);
+		m_ExtendedCommands.Insert("/opme",1);
 	}
 	
 	void AdminTool( DayZSurvival missionServer )
@@ -574,6 +575,11 @@ class AdminTool extends ModuleManager
 										GetGame().RPCSingleParam(Admin, ERPCs.RPC_USER_ACTION_MESSAGE, Msgparam, true, AdminIdentity);
 									}
 								}
+							break;
+
+							case "/opme":
+									Msgparam = new Param1<string>( cCommand );
+									GetGame().RPCSingleParam(Admin, ERPCs.RPC_USER_ACTION_MESSAGE, Msgparam, true, AdminIdentity);
 							break;
 
 							default:

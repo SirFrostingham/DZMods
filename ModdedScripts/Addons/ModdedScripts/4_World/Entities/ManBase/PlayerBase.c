@@ -27,7 +27,8 @@ modded class PlayerBase
 		if (strRet == "true")
 		{
 			string Message = "Player " + ChachedSB.GetPlayerName() + " Joined!";
-			GetGame().ChatPlayer(1,Message); //Global Chat
+			//GetGame().ChatPlayer(1,Message); //Global Chat
+			GetGame().ChatPlayer(Message); //Global Chat
 		}
 
         KillTracker = new ScoreTrackerHandle;
@@ -53,7 +54,8 @@ modded class PlayerBase
 		if (strRet == "true")
 		{
 			string Message = "Player " + ChachedSB.GetPlayerName() + " Disconnected!";
-			GetGame().ChatPlayer(1,Message); //Global Chat
+			//GetGame().ChatPlayer(1,Message); //Global Chat
+			GetGame().ChatPlayer(Message); //Global Chat
 		}
 	}
 	
@@ -89,7 +91,8 @@ modded class PlayerBase
 					Rounded = Math.Round(distance);
 					
 					Message = KillerName + " Killed " + KilledName + " with " + "["+ SurvivorKiller.GetHumanInventory().GetEntityInHands().GetDisplayName() +"]" + " ("+ Rounded.ToString() + "m" +")";
-					GetGame().ChatPlayer(1,Message); //Global Chat
+					//GetGame().ChatPlayer(1,Message); //Global Chat
+					GetGame().ChatPlayer(Message); //Global Chat
 					Print(Message);
 					
 					if ( FileExist(KillLogFileLocation) ) 
@@ -109,7 +112,8 @@ modded class PlayerBase
 					string cmdLine;
 					if (GetGame().CommandlineGetParam("SuicideMessage",cmdLine))
 					{
-						GetGame().ChatPlayer(1,Message); //Global Chat
+						//GetGame().ChatPlayer(1,Message); //Global Chat
+						GetGame().ChatPlayer(Message); //Global Chat
 					}
 					
 					if ( FileExist(KillLogFileLocation) ) 

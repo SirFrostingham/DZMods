@@ -5,11 +5,18 @@
 #include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\Misc\\BuildingSpawner.c"
 #include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\SafeZone\\SafeZoneFunctions.c"
 #include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\ServerEvents\\InfectedHordes.c"
+#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\SupplyDropPlus\\SupplyDropPlusManager.c"
+#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\CrashSite\\CrashSiteDropPlusManager.c"
+//#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\CrashSite\\CrashSite.c"
+//#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\CrashSite\\CrashSiteManager.c"
 
 //#include "$CurrentDir:\\mpmissions\\DayZSurvival.chernarusplus\\ScriptedMods\\Modules\\Misc\\MOTDMessages.c"
 
 class DayZSurvival : MissionServer
 {
+	//ref CrashSiteManager m_crashSiteSpawner;
+	ref SupplyDropPlusManager airdrop;
+	ref CrashSiteDropPlusManager crashSiteDrop;
 	private ref set<ref ModuleManager> m_Modules;
 	ref InfectedHordes m_ZombieEvents;
 	protected float m_LogInTimerLength = 1;     //in seconds the spawn timer when players login!
@@ -30,8 +37,19 @@ class DayZSurvival : MissionServer
 		Print("VANILLA++ IS ALIVE!!");
 		m_Modules = new set<ref ModuleManager>;
 		RegisterModules();
+		
 		//Airdrop
 		AirDropClass = new AirDrop;
+		
+		//supply drop
+		airdrop = new SupplyDropPlusManager();
+		
+		//supply drop
+		crashSiteDrop = new CrashSiteDropPlusManager();
+		
+		//crash sites
+		//m_crashSiteSpawner = new CrashSiteManager();
+		//new CrashSiteManager();
 	}
 	
 	void ~DayZSurvival()
@@ -151,18 +169,8 @@ class DayZSurvival : MissionServer
 		
 		//-----------
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.PlayerCounter, 110000, true);  //Default 120000 2 mins Looped
-		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.ReRegisterAdminTool, 115000, true);  //Default 120000 2 mins Looped
 		//GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(this.CustomMOTD, TIME_INTERVAL, true);  //Default 120000 2 mins Looped
 		//-----------
-	}
-	
-	void ReRegisterAdminTool()
-	{
-		if (ModTunables.Cast(GetModule(ModTunables)).IsActive("AdminTools"))
-		{
-			Print("Re-Registering Admin tool!!");
-			GetModule(AdminTool).Init();
-		}
 	}
 
 	override void OnPreloadEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int queueTime)
@@ -248,7 +256,8 @@ class DayZSurvival : MissionServer
 	{
 		if (Message != "")
 		{
-			GetGame().ChatPlayer(Channel,Message);
+			//GetGame().ChatPlayer(Channel,Message);
+			GetGame().ChatPlayer(Message);
 		}
 	}
 
@@ -341,5 +350,15 @@ class DayZSurvival : MissionServer
 			AirDropClass.CreateAirDrop();
 			TimerSlice = 0;	
 		}
+		//todo: research this: GetGame().IsMultiplayer() || !GetGame().IsClient()
+		
+		//supply drop
+		airdrop.onUpdateMaxSupplyDrops(timeslice);
+		
+		//supply drop
+		crashSiteDrop.onUpdateMaxCrashes(timeslice);
+		
+		//crash sites
+		//m_crashSiteSpawner.PollCrashSite();		
 	}
 }
