@@ -5,17 +5,18 @@
 4. Start your server: Use some sort of batch file to start/restart server with this in it...
  - .\DayZServerDir\DayZServer_x64.exe -server -mod=ModdedScripts;DayZ-Sa-Tomato -scrAllowFileWrite -filePatching -port=2302 -config=instance\serverdz.cfg -profiles=instance -name=instance -BEpath=BattlEye -cpuCount=8 -exThreads=7 -maxMem=20000 -noPause -noSound -noLogs -adminlog -freezecheck
 
-I chose this version of DaOne's Vanilla++ to branch off and go a NO CLIENT MODS route. The latest versions of Vanilla++ incorporates required client-side mods. This implementation keeps all mods server-side only.
-
-Features I personally added:
+Features I personally created/contributed:
  - Dynamic helo drops
  - Dynamic treasure chest drops
  
- 
-Recommend a server side only Admin tool, like the specific version of Tomato included here, since it does not crash.
+Admin tools:
+Recommend a server side only Admin tool, like the specific version of Tomato included here, since it does not crash the server.
 
+Do note, I improved the functionality of all of this code and kept it compatible with the latest version of DayZ.
 
-Credit to DaOne and his dev/qa team. Their instructions listed below... or search GitHub for https://github.com/Da0ne/DZMods
+I chose this version of DaOne's Vanilla++ to branch off and go a NO CLIENT MODS route. The latest versions of Vanilla++ incorporates required client-side mods. This implementation keeps all mods server-side only.
+
+Credit to DaOne and his dev/qa team. Their feature list below... or search GitHub for https://github.com/Da0ne/DZMods for the latest version of that mod system.
 
 ——
 
@@ -43,6 +44,7 @@ Credit to DaOne and his dev/qa team. Their instructions listed below... or searc
 
 ## - Chat Based Admin Tool set.  
 #### Simply Add your steam 64 ID into the file mpmissions/DayZSurvival.chernarusplus/ScriptedMods/Admins.txt" Set a server admin password in the server.cfg, in game login using the password. #login myPassword The Admintoolset feature can be found here: https://pastebin.com/GGrCDg3f
+ - NOTE: This chat based admin tool does not work very well, which is why the Tomato admin tool is included.
 
 ## - Player score tracking system and Kill Activity tracker with timestamps
 ##### This feature creates two files in the server profile ( if you use -instance command line it would be placed there ) the serevr profile is in Documents folder by deafult (its where your logs are). provides detailed kill log and records players stats such as total deaths and total kills on the server. This feature is implemented within the mod.
@@ -52,3 +54,73 @@ Credit to DaOne and his dev/qa team. Their instructions listed below... or searc
 
 ## - Custom MOTD based within the mission
 ##### Random preset messages popup for all players. To change the messages check the file " mpmissions/DayZSurvival.chernarusplus/ScriptedMods/MOTDMessages.c "
+
+Chat based admin commands...
+
+#login [password]
+
+INSTRUCTIONS:
+
+
+------------
+Teleport locations list:
+------------
+
+Severograd
+Krasnostav
+Mogilevka
+Stary
+Msta
+Vybor
+Gorka
+Solni
+NWAFS
+NWAFC
+NWAFN
+BAF
+NEAF
+ChernoC
+ChernoW
+ChernoE
+ElektroW
+ElektroE
+BerezC
+BerezS
+BerezN
+Svet
+ZelenoS
+ZelenoN
+Lopatino
+Tisy
+Novaya
+Novy
+Grishino
+Kabanino
+
+--------------
+Commands avaibale for use:
+
+/export				  - Saves current gear on admin player as possible load-out to spawn with for players on server
+/LoadoutType	      - Switches the load out type on spawn: static or randomly generated
+/CustomLoadouts       -Enable or Disable custom loadouts
+/godmode 			  -Enable/Diable God Mode
+/freecam  			  -enables freecam, to disable type the command again
+/spi itemClassName    -Spawns item in your inventory make sure you leave space after the command then insert item name
+/spg itemClassName	  -Spawns item around your player make sure you leave space after the command then insert item name
+/tpto TownName        - Teleports your player to the town selected (case sensative!) use names from list above!
+/tpc 7500 0 7500      - Teleports player to the corrds make sure you leave space after the command and after each value x z y
+/debug                - Enables/Disables debug monitor for all players on server. After Disabling players need to relog so the UI goes away.
+/nighttime 			  - Not sure what this command does :P
+/daytime		      - Not sure what this command does :P
+/heal				  - Heals admin only
+/tpalltome			  - welp, it will TP all players to you :)
+/killall		      - yep, that ugly ass black screen will show up :P
+/kill			      - Suicide is a problem within our society.
+/spawncar			  - Spawns a blue Hatchback ready to drive right next to you :)
+/tpp                  -Tp player to you by name, leave space after command
+/tppm                 -tp your player to the player selected by name, leave space after command
+/stamina			  -Enable/Disable Stamina on the server. Applies to all players.
+/updateLoadouts       -Reads and constructs the custom loadouts files.
+/strip PlayerName     -Strips the player from thier items (Deletes everything). leave space between command and name
+/ammo				  - Reloads and Heals weapon in hand
+/SpawnArmed			  -Enable/Disable the spawn with gun feature.
