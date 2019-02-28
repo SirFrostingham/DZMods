@@ -55,7 +55,7 @@ Credit to DaOne and his dev/qa team. Their feature list below... or search GitHu
 ## - Custom MOTD based within the mission
 ##### Random preset messages popup for all players. To change the messages check the file " mpmissions/DayZSurvival.chernarusplus/ScriptedMods/MOTDMessages.c "
 
-Chat based admin commands...
+##Chat based admin commands...
 
 #login [password]
 
@@ -67,60 +67,112 @@ Teleport locations list:
 ------------
 
 Severograd
+
 Krasnostav
+
 Mogilevka
+
 Stary
+
 Msta
+
 Vybor
+
 Gorka
+
 Solni
+
 NWAFS
+
 NWAFC
+
 NWAFN
+
 BAF
+
 NEAF
+
 ChernoC
+
 ChernoW
+
 ChernoE
+
 ElektroW
+
 ElektroE
+
 BerezC
+
 BerezS
+
 BerezN
+
 Svet
+
 ZelenoS
+
 ZelenoN
+
 Lopatino
+
 Tisy
+
 Novaya
+
 Novy
+
 Grishino
+
 Kabanino
 
 --------------
 Commands avaibale for use:
 
 /export				  - Saves current gear on admin player as possible load-out to spawn with for players on server
+
 /LoadoutType	      - Switches the load out type on spawn: static or randomly generated
+
 /CustomLoadouts       -Enable or Disable custom loadouts
+
 /godmode 			  -Enable/Diable God Mode
+
 /freecam  			  -enables freecam, to disable type the command again
+
 /spi itemClassName    -Spawns item in your inventory make sure you leave space after the command then insert item name
+
 /spg itemClassName	  -Spawns item around your player make sure you leave space after the command then insert item name
+
 /tpto TownName        - Teleports your player to the town selected (case sensative!) use names from list above!
+
 /tpc 7500 0 7500      - Teleports player to the corrds make sure you leave space after the command and after each value x z y
+
 /debug                - Enables/Disables debug monitor for all players on server. After Disabling players need to relog so the UI goes away.
+
 /nighttime 			  - Not sure what this command does :P
+
 /daytime		      - Not sure what this command does :P
+
 /heal				  - Heals admin only
+
 /tpalltome			  - welp, it will TP all players to you :)
+
 /killall		      - yep, that ugly ass black screen will show up :P
+
 /kill			      - Suicide is a problem within our society.
+
 /spawncar			  - Spawns a blue Hatchback ready to drive right next to you :)
+
 /tpp                  -Tp player to you by name, leave space after command
+
 /tppm                 -tp your player to the player selected by name, leave space after command
+
 /stamina			  -Enable/Disable Stamina on the server. Applies to all players.
+
 /updateLoadouts       -Reads and constructs the custom loadouts files.
+
 /strip PlayerName     -Strips the player from thier items (Deletes everything). leave space between command and name
+
 /ammo				  - Reloads and Heals weapon in hand
+
 /SpawnArmed			  -Enable/Disable the spawn with gun feature.
